@@ -284,10 +284,6 @@ You will need TLS certificates to handle secured connectivity to your Applicatio
 
 
 
-
-
-
-
 ### **CONFIGURE APPLICATION LOAD BALANCER (ALB)**
 
 **Application Load Balancer To Route Traffic To NGINX**
@@ -349,7 +345,7 @@ Amazon Relational Database Service (Amazon RDS) is a managed distributed relatio
 To ensure that yout databases are highly available and also have failover support in case one availability zone fails, we will configure a multi-AZ set up of RDS MySQL database instance. In our case, since we are only using 2 AZs, we can only failover to one, but the same concept applies to 3 Availability Zones. 
 
 
-To configure RDS, follow steps below:
+## To configure RDS, follow steps below:
 
 Create a subnet group and add 2 private subnets (data Layer)
 
@@ -367,11 +363,9 @@ Encrypt the database using the KMS key created earlier
 
 Enable CloudWatch monitoring and export Error and Slow Query logs (for production, also include Audit)
 
-Note This service is an expensinve one. Ensure to review the monthly cost before creating. (DO NOT LEAVE ANY SERVICE RUNNING FOR LONG)
-
 Configuring DNS with Route53
 
-Earlier in this project you registered a domain and configured a hosted zone in Route53. But that is not all that needs to be done as far as DNS configuration is concerned.
+Earlier in this project you registered a domain and configured a hosted zone in Route53. 
 
 You need to ensure that the main domain for the WordPress website can be reached, and the subdomain for Tooling website can also be reached using a browser.
 
@@ -382,3 +376,12 @@ NOTE: You can use either CNAME or alias records to achieve the same thing.
 Create an alias record for the root domain and direct its traffic to the ALB DNS name.
 
 Create an alias record for tooling.<yourdomain>.com and direct its traffic to the ALB DNS name.
+
+
+![tooling health](./images/tooling-healthcheck-passed.png)
+
+![nginx](./images/nginx-health%20-status-passed.png)
+
+![wordpress](./images/wordpress-healthstatus-passed.png)
+
+# THANKS
